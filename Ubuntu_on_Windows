@@ -1,0 +1,22 @@
+@echo off
+setlocal enabledelayedexpansion
+
+REM Check if WSL is installed
+wsl --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Installing WSL...
+    wsl --install
+    echo WSL installation complete. Please restart your computer and run this script again.
+    exit /b
+)
+
+REM Check if Ubuntu is installed
+wsl -l -v | findstr /i "Ubuntu" >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Installing Ubuntu...
+    wsl --install -d Ubuntu
+    echo Ubuntu installation complete. Please restart your computer and run this script again.
+    exit /b
+)
+
+pause
